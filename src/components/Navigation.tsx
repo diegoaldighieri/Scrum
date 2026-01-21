@@ -4,11 +4,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
-interface NavigationProps {
-  isScrolled: boolean;
-}
-
-export default function Navigation({ isScrolled }: NavigationProps) {
+export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {

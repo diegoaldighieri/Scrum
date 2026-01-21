@@ -54,7 +54,7 @@ export default function HowItWorks() {
             <div key={i} className="relative">
               {/* Connector line - hidden on last item */}
               {i < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-primary/30 to-transparent -translate-x-4 z-0"></div>
+                <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-linear-to-r from-primary/30 to-transparent -translate-x-4 z-0"></div>
               )}
               
               <div className="relative z-10 text-center">
@@ -92,7 +92,7 @@ export default function HowItWorks() {
               <div className="space-y-3">
                 <div className="p-4 bg-slate-800/50 border border-primary/20 rounded-lg hover:border-primary/40 transition-all hover:scale-105">
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0 animate-pulse"></div>
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0 animate-pulse"></div>
                     <div>
                       <p className="text-white font-semibold mb-1">Alert: Abbonamento Dimenticato</p>
                       <p className="text-gray-400 text-sm">Pagamento ricorrente di €14,99 rilevato per "Servizio XYZ". Lo stai ancora utilizzando?</p>
@@ -101,7 +101,7 @@ export default function HowItWorks() {
                 </div>
                 <div className="p-4 bg-slate-800/50 border border-amber-500/20 rounded-lg hover:border-amber-500/40 transition-all hover:scale-105">
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0 animate-pulse"></div>
+                    <div className="w-2 h-2 bg-amber-500 rounded-full mt-2 shrink-0 animate-pulse"></div>
                     <div>
                       <p className="text-white font-semibold mb-1">Attenzione: Budget a Rischio</p>
                       <p className="text-gray-400 text-sm">Al ritmo attuale, supererai il budget di €150 entro fine mese. Consigliamo di ridurre le spese non essenziali.</p>
@@ -110,7 +110,7 @@ export default function HowItWorks() {
                 </div>
                 <div className="p-4 bg-slate-800/50 border border-blue-500/20 rounded-lg hover:border-blue-500/40 transition-all hover:scale-105">
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0 animate-pulse"></div>
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 shrink-0 animate-pulse"></div>
                     <div>
                       <p className="text-white font-semibold mb-1">Insight: Pattern di Spesa</p>
                       <p className="text-gray-400 text-sm">Tendi a spendere il 40% in più il venerdì sera. Considera di pianificare gli acquisti in anticipo.</p>
@@ -121,7 +121,7 @@ export default function HowItWorks() {
             </div>
             
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-8 border border-primary/20 hover:border-primary/40 transition-all">
+              <div className="aspect-square bg-linear-to-br from-slate-800 to-slate-900 rounded-xl p-8 border border-primary/20 hover:border-primary/40 transition-all">
                 <div className="text-center mb-6">
                   <div className="text-sm text-gray-400 mb-2">Risparmio Totale</div>
                   <div className="text-5xl font-bold text-primary">€847</div>

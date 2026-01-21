@@ -24,7 +24,7 @@ export default function CTA() {
   return (
     <section className="relative py-24 px-6">
       <div className="max-w-5xl mx-auto">
-        <div className="relative overflow-hidden bg-gradient-to-br from-primary/20 via-slate-900/80 to-emerald-900/20 backdrop-blur-sm border border-primary/30 rounded-3xl p-12 md:p-16 hover:border-primary/50 transition-all">
+        <div className="relative overflow-hidden bg-linear-to-br from-primary/20 via-slate-900/80 to-emerald-900/20 backdrop-blur-sm border border-primary/30 rounded-3xl p-12 md:p-16 hover:border-primary/50 transition-all">
           {/* Decorative elements */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/30 rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>

@@ -88,7 +88,7 @@ export default function Pricing() {
               key={i}
               className={`relative p-8 rounded-2xl transition-all duration-300 ${
                 plan.popular
-                  ? "bg-gradient-to-b from-primary/10 to-slate-900/50 border-2 border-primary shadow-xl shadow-primary/20 lg:scale-105"
+                  ? "bg-linear-to-b from-primary/10 to-slate-900/50 border-2 border-primary shadow-xl shadow-primary/20 lg:scale-105"
                   : "bg-slate-900/50 border border-primary/10 hover:border-primary/30"
               }`}
             >
@@ -114,7 +114,7 @@ export default function Pricing() {
               <ul className="space-y-4 mb-8">
                 {plan.features.map((feature, j) => (
                   <li key={j} className="flex items-start space-x-3">
-                    <div className="w-5 h-5 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="w-5 h-5 bg-primary/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="w-3 h-3 text-primary" />
                     </div>
                     <span className="text-gray-300 text-sm">{feature}</span>
@@ -122,7 +122,7 @@ export default function Pricing() {
                 ))}
                 {plan.limitations && plan.limitations.map((limitation, j) => (
                   <li key={`limit-${j}`} className="flex items-start space-x-3">
-                    <div className="w-5 h-5 bg-gray-600/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="w-5 h-5 bg-gray-600/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                       <Minus className="w-3 h-3 text-gray-500" />
                     </div>
                     <span className="text-gray-500 text-sm">{limitation}</span>

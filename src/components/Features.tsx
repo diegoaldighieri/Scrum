@@ -95,7 +95,7 @@ export default function Features() {
             ))}
 
             {/* CTA Card */}
-            <div className="p-8 bg-gradient-to-br from-primary/10 to-emerald-500/10 backdrop-blur-sm border border-primary/20 rounded-xl flex flex-col items-center justify-center text-center hover:border-primary/40 transition-all duration-300 hover:scale-105">
+            <div className="p-8 bg-linear-to-br from-primary/10 to-emerald-500/10 backdrop-blur-sm border border-primary/20 rounded-xl flex flex-col items-center justify-center text-center hover:border-primary/40 transition-all duration-300 hover:scale-105">
               <h3 className="text-2xl font-bold text-white mb-3">E molto altro</h3>
               <p className="text-gray-400 mb-6">
                 Oltre 15 algoritmi di analisi per aiutarti a prendere decisioni finanziarie migliori ogni giorno.
