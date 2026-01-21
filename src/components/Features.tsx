@@ -33,11 +33,11 @@ export default function Features() {
   return (
     <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
             Il tuo <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">coach finanziario</span> tascabile
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 dark:text-gray-400 light:text-gray-600 max-w-2xl mx-auto">
             Intelligenza artificiale avanzata per trasformare i tuoi scontrini in insight preziosi
           </p>
         </div>
@@ -46,13 +46,18 @@ export default function Features() {
           {features.map((feature, idx) => (
             <div 
               key={idx} 
-              className="group bg-slate-900/50 backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20 hover:border-cyan-500/50 transition-all hover:transform hover:scale-105 cursor-pointer"
+              className="group bg-slate-900/50 dark:bg-slate-900/50 light:bg-white backdrop-blur-lg rounded-2xl p-6 border border-cyan-500/20 dark:border-cyan-500/20 light:border-gray-200 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer hover-lift animate-fade-in"
+              style={{animationDelay: `${idx * 100}ms`}}
             >
-              <div className={`inline-block p-4 rounded-2xl bg-gradient-to-br ${feature.color} mb-4 group-hover:shadow-lg transition-shadow`}>
+              <div className={`inline-block p-4 rounded-2xl bg-gradient-to-br ${feature.color} mb-4 group-hover:shadow-2xl group-hover:scale-110 transition-all duration-300`}>
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
+              <h3 className="text-xl font-bold mb-2 dark:text-white light:text-gray-900 group-hover:text-cyan-400 transition-colors">
+                {feature.title}
+              </h3>
+              <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
