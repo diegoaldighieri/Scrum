@@ -63,7 +63,7 @@ export default function Navigation({ isScrolled }: NavigationProps) {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a 
-            href="#" 
+            href="@/public/logo.png"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
