@@ -39,7 +39,7 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-[#38D594]" />
                 <a href="mailto:support@receiptia.com" className="hover:text-[#38D594] transition-colors">
-                  support@receiptia.com
+                  marius.cucs.011@gmail.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">
@@ -48,7 +48,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-[#38D594]" />
-                <span>Vicenza, Italia</span>
+                <span>Vicenza, Via Dandolo Enrico 6, Italia</span>
               </div>
             </div>
           </div>
