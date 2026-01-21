@@ -5,6 +5,7 @@
 :root {
   --primary: #38D594;
   --primary-dark: #2bb57d;
+  --primary-light: #4ddfa5;
   --emerald-500: #10b981;
   --emerald-600: #059669;
   --slate-950: #020617;
@@ -74,6 +75,11 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
+/* Prevent layout shift */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {
@@ -104,10 +110,30 @@ button:focus-visible {
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.6s ease-out;
 }
 
 .animate-fadeInUp {
   animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Utility classes */
+.glass-effect {
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(56, 213, 148, 0.1);
 }

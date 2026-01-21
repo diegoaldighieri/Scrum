@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
     {
@@ -41,6 +41,14 @@ export default function FAQ() {
     },
   ];
 
+  const handleContactSupport = () => {
+    alert("Ti metteremo in contatto con il nostro team di supporto entro 10 minuti!");
+  };
+
+  const handleVisitHelpCenter = () => {
+    alert("Ti reindirizzeremo al Centro Assistenza dove troverai guide dettagliate e tutorial!");
+  };
+
   return (
     <section id="faq" className="relative py-24 px-6">
       <div className="max-w-4xl mx-auto">
@@ -59,22 +67,25 @@ export default function FAQ() {
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className="bg-slate-900/50 backdrop-blur-sm border border-[#38D594]/10 rounded-xl overflow-hidden hover:border-[#38D594]/30 transition-all duration-300"
+              className="bg-slate-900/50 backdrop-blur-sm border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all duration-300"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full p-6 flex items-center justify-between text-left"
+                className="w-full p-6 flex items-center justify-between text-left hover:bg-slate-900/30 transition-colors"
+                aria-expanded={openIndex === i}
+                aria-controls={`faq-answer-${i}`}
               >
                 <span className="text-lg font-semibold text-white pr-8">
                   {faq.question}
                 </span>
                 <ChevronDown
-                  className={`w-6 h-6 text-[#38D594] flex-shrink-0 transition-transform duration-300 ${
+                  className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${
                     openIndex === i ? "rotate-180" : ""
                   }`}
                 />
               </button>
               <div
+                id={`faq-answer-${i}`}
                 className={`overflow-hidden transition-all duration-300 ${
                   openIndex === i ? "max-h-96" : "max-h-0"
                 }`}
@@ -88,7 +99,7 @@ export default function FAQ() {
         </div>
 
         {/* Additional Help */}
-        <div className="mt-12 text-center p-8 bg-gradient-to-br from-slate-900/80 to-slate-900/50 backdrop-blur-sm border border-[#38D594]/10 rounded-xl">
+        <div className="mt-12 text-center p-8 bg-gradient-to-br from-slate-900/80 to-slate-900/50 backdrop-blur-sm border border-primary/10 rounded-xl hover:border-primary/20 transition-all">
           <h3 className="text-xl font-bold text-white mb-3">
             Non hai trovato la risposta che cercavi?
           </h3>
@@ -96,10 +107,16 @@ export default function FAQ() {
             Il nostro team di supporto è sempre disponibile per aiutarti
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="px-8 py-3 bg-[#38D594] hover:bg-emerald-500 text-slate-950 font-semibold rounded-lg transition-all duration-300">
+            <button 
+              onClick={handleContactSupport}
+              className="px-8 py-3 bg-primary hover:bg-primary-dark text-slate-950 font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg shadow-primary/20"
+            >
               Contatta il Supporto
             </button>
-            <button className="px-8 py-3 bg-slate-800 hover:bg-slate-700 border border-[#38D594]/20 text-white font-semibold rounded-lg transition-all duration-300">
+            <button 
+              onClick={handleVisitHelpCenter}
+              className="px-8 py-3 bg-slate-800 hover:bg-slate-700 border border-primary/20 hover:border-primary/40 text-white font-semibold rounded-lg transition-all duration-300"
+            >
               Visita il Centro Assistenza
             </button>
           </div>

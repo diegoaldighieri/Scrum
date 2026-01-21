@@ -3,6 +3,8 @@
 import { Receipt, Mail, Phone, MapPin, Linkedin, Twitter, Instagram, Youtube } from "lucide-react";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   const links = {
     Prodotto: ["Funzionalità", "Piani e Prezzi", "Sicurezza", "API"],
     Risorse: ["Centro Assistenza", "Blog", "Guide", "Webinar"],
@@ -17,19 +19,29 @@ export default function Footer() {
     { icon: <Youtube className="w-5 h-5" />, href: "#", label: "YouTube" },
   ];
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, linkText: string) => {
+    e.preventDefault();
+    alert(`Navigazione verso: ${linkText}`);
+  };
+
+  const handleSocialClick = (e: React.MouseEvent<HTMLAnchorElement>, platform: string) => {
+    e.preventDefault();
+    alert(`Visitando il nostro profilo ${platform}!`);
+  };
+
   return (
-    <footer className="relative py-16 px-6 border-t border-[#38D594]/10 bg-slate-950/50">
+    <footer className="relative py-16 px-6 border-t border-primary/10 bg-slate-950/50">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-12 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#38D594] to-emerald-600 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-primary to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
                 <Receipt className="w-6 h-6 text-slate-950" />
               </div>
               <div>
                 <div className="text-xl font-bold text-white">Receiptia</div>
-                <div className="text-xs text-[#38D594] font-semibold">GENIUS</div>
+                <div className="text-xs text-primary font-semibold">GENIUS</div>
               </div>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6 max-w-sm">
@@ -37,18 +49,26 @@ export default function Footer() {
             </p>
             <div className="space-y-3 text-sm text-gray-400">
               <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-[#38D594]" />
-                <a href="mailto:support@receiptia.com" className="hover:text-[#38D594] transition-colors">
-                  marius.cucs.011@gmail.com
+                <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+                <a 
+                  href="mailto:support@receiptia.com" 
+                  className="hover:text-primary transition-colors"
+                >
+                  support@receiptia.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-[#38D594]" />
-                <span>+39 328 872 9119</span>
+                <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+                <a 
+                  href="tel:+39800123456" 
+                  className="hover:text-primary transition-colors"
+                >
+                  +39 800 123 456
+                </a>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-[#38D594]" />
-                <span>Vicenza, Via Dandolo Enrico 6, Italia</span>
+                <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                <span>Vicenza, Italia</span>
               </div>
             </div>
           </div>
@@ -62,7 +82,8 @@ export default function Footer() {
                   <li key={item}>
                     <a
                       href="#"
-                      className="text-gray-400 hover:text-[#38D594] transition-colors text-sm"
+                      onClick={(e) => handleLinkClick(e, item)}
+                      className="text-gray-400 hover:text-primary transition-colors text-sm block"
                     >
                       {item}
                     </a>
@@ -74,11 +95,20 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#38D594]/10">
+        <div className="pt-8 border-t border-primary/10">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
             {/* Copyright */}
-            <div className="text-gray-400 text-sm order-2 md:order-1">
-              © 2026 Receiptia by <a href="https://mecapptronics.com" className="text-[#38D594] hover:underline" target="_blank" rel="noopener noreferrer">Mecapptronics Srl</a>. Tutti i diritti riservati.
+            <div className="text-gray-400 text-sm order-2 md:order-1 text-center md:text-left">
+              © {currentYear} Receiptia by{" "}
+              <a 
+                href="https://mecapptronics.com" 
+                className="text-primary hover:underline" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                Mecapptronics Srl
+              </a>
+              . Tutti i diritti riservati.
             </div>
 
             {/* Social Links */}
@@ -87,8 +117,9 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
+                  onClick={(e) => handleSocialClick(e, social.label)}
                   aria-label={social.label}
-                  className="w-10 h-10 bg-slate-800/50 hover:bg-[#38D594]/20 border border-[#38D594]/10 hover:border-[#38D594]/30 rounded-lg flex items-center justify-center text-gray-400 hover:text-[#38D594] transition-all duration-300"
+                  className="w-10 h-10 bg-slate-800/50 hover:bg-primary/20 border border-primary/10 hover:border-primary/30 rounded-lg flex items-center justify-center text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110"
                 >
                   {social.icon}
                 </a>
@@ -98,21 +129,18 @@ export default function Footer() {
 
           {/* Legal Links */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
-            <a href="#" className="hover:text-[#38D594] transition-colors">
-              Privacy Policy
-            </a>
-            <span>•</span>
-            <a href="#" className="hover:text-[#38D594] transition-colors">
-              Termini di Servizio
-            </a>
-            <span>•</span>
-            <a href="#" className="hover:text-[#38D594] transition-colors">
-              Cookie Policy
-            </a>
-            <span>•</span>
-            <a href="#" className="hover:text-[#38D594] transition-colors">
-              GDPR
-            </a>
+            {["Privacy Policy", "Termini di Servizio", "Cookie Policy", "GDPR"].map((item, index, array) => (
+              <div key={item} className="flex items-center gap-6">
+                <a 
+                  href="#" 
+                  onClick={(e) => handleLinkClick(e, item)}
+                  className="hover:text-primary transition-colors"
+                >
+                  {item}
+                </a>
+                {index < array.length - 1 && <span>•</span>}
+              </div>
+            ))}
           </div>
         </div>
       </div>

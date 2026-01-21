@@ -1,54 +1,128 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Receipt } from "lucide-react";
 
-export default function Navigation({ isScrolled }) {
+interface NavigationProps {
+  isScrolled: boolean;
+}
+
+export default function Navigation({ isScrolled }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Close mobile menu on resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = 80; // Navigation height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
 
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? "backdrop-blur-xl bg-slate-950/80 border-b border-[#38D594]/10 shadow-lg"
+          ? "backdrop-blur-xl bg-slate-950/80 border-b border-primary/10 shadow-lg"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#38D594] to-emerald-600 rounded-xl flex items-center justify-center">
+          <a 
+            href="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+          >
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
               <Receipt className="w-6 h-6 text-slate-950" />
             </div>
             <div>
               <div className="text-xl font-bold text-white">Receiptia</div>
-              <div className="text-xs text-[#38D594] font-semibold">GENIUS</div>
+              <div className="text-xs text-primary font-semibold">GENIUS</div>
             </div>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-gray-300 hover:text-[#38D594] transition-colors font-medium">
+            <a 
+              href="#features" 
+              onClick={(e) => handleLinkClick(e, "#features")}
+              className="text-gray-300 hover:text-primary transition-colors font-medium"
+            >
               Funzionalità
             </a>
-            <a href="#how-it-works" className="text-gray-300 hover:text-[#38D594] transition-colors font-medium">
+            <a 
+              href="#how-it-works" 
+              onClick={(e) => handleLinkClick(e, "#how-it-works")}
+              className="text-gray-300 hover:text-primary transition-colors font-medium"
+            >
               Come Funziona
             </a>
-            <a href="#pricing" className="text-gray-300 hover:text-[#38D594] transition-colors font-medium">
+            <a 
+              href="#pricing" 
+              onClick={(e) => handleLinkClick(e, "#pricing")}
+              className="text-gray-300 hover:text-primary transition-colors font-medium"
+            >
               Piani
             </a>
-            <a href="#faq" className="text-gray-300 hover:text-[#38D594] transition-colors font-medium">
+            <a 
+              href="#faq" 
+              onClick={(e) => handleLinkClick(e, "#faq")}
+              className="text-gray-300 hover:text-primary transition-colors font-medium"
+            >
               FAQ
             </a>
           </div>
 
           {/* CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="px-6 py-2.5 text-gray-300 hover:text-white transition-colors font-medium">
+            <button 
+              onClick={() => alert("Funzionalità di login in arrivo!")}
+              className="px-6 py-2.5 text-gray-300 hover:text-white transition-colors font-medium"
+            >
               Accedi
             </button>
-            <button className="px-6 py-2.5 bg-[#38D594] hover:bg-emerald-500 text-slate-950 font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-[#38D594]/20">
+            <button 
+              onClick={() => alert("Inizia la tua prova gratuita di 14 giorni!")}
+              className="px-6 py-2.5 bg-primary hover:bg-primary-dark text-slate-950 font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:scale-105"
+            >
               Inizia Gratis
             </button>
           </div>
@@ -56,7 +130,8 @@ export default function Navigation({ isScrolled }) {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-300 hover:text-[#38D594]"
+            className="md:hidden p-2 text-gray-300 hover:text-primary transition-colors"
+            aria-label={isOpen ? "Chiudi menu" : "Apri menu"}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -69,40 +144,52 @@ export default function Navigation({ isScrolled }) {
           isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="px-6 py-4 space-y-3 backdrop-blur-xl bg-slate-950/90 border-t border-[#38D594]/10">
+        <div className="px-6 py-4 space-y-3 backdrop-blur-xl bg-slate-950/95 border-t border-primary/10">
           <a
             href="#features"
-            className="block px-4 py-2 text-gray-300 hover:text-[#38D594] transition-colors"
-            onClick={() => setIsOpen(false)}
+            onClick={(e) => handleLinkClick(e, "#features")}
+            className="block px-4 py-2 text-gray-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
           >
             Funzionalità
           </a>
           <a
             href="#how-it-works"
-            className="block px-4 py-2 text-gray-300 hover:text-[#38D594] transition-colors"
-            onClick={() => setIsOpen(false)}
+            onClick={(e) => handleLinkClick(e, "#how-it-works")}
+            className="block px-4 py-2 text-gray-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
           >
             Come Funziona
           </a>
           <a
             href="#pricing"
-            className="block px-4 py-2 text-gray-300 hover:text-[#38D594] transition-colors"
-            onClick={() => setIsOpen(false)}
+            onClick={(e) => handleLinkClick(e, "#pricing")}
+            className="block px-4 py-2 text-gray-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
           >
             Piani
           </a>
           <a
             href="#faq"
-            className="block px-4 py-2 text-gray-300 hover:text-[#38D594] transition-colors"
-            onClick={() => setIsOpen(false)}
+            onClick={(e) => handleLinkClick(e, "#faq")}
+            className="block px-4 py-2 text-gray-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
           >
             FAQ
           </a>
-          <div className="pt-4 space-y-2">
-            <button className="w-full px-6 py-2.5 text-gray-300 hover:text-white transition-colors font-medium text-center">
+          <div className="pt-4 space-y-2 border-t border-primary/10">
+            <button 
+              onClick={() => {
+                setIsOpen(false);
+                alert("Funzionalità di login in arrivo!");
+              }}
+              className="w-full px-6 py-2.5 text-gray-300 hover:text-white hover:bg-slate-800 rounded-lg transition-colors font-medium text-center"
+            >
               Accedi
             </button>
-            <button className="w-full px-6 py-2.5 bg-[#38D594] hover:bg-emerald-500 text-slate-950 font-semibold rounded-lg transition-all duration-300">
+            <button 
+              onClick={() => {
+                setIsOpen(false);
+                alert("Inizia la tua prova gratuita di 14 giorni!");
+              }}
+              className="w-full px-6 py-2.5 bg-primary hover:bg-primary-dark text-slate-950 font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-primary/20"
+            >
               Inizia Gratis
             </button>
           </div>
