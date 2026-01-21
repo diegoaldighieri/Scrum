@@ -1,138 +1,113 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import Image from "next/image";
-import ThemeToggle from "./ThemeToggle";
+import { Menu, X, Receipt } from "lucide-react";
 
-interface NavigationProps {
-  isScrolled: boolean;
-}
-
-export default function Navigation({ isScrolled }: NavigationProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMenuOpen(false);
-  };
+export default function Navigation({ isScrolled }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled 
-        ? "bg-slate-950/90 dark:bg-slate-950/90 light:bg-white/90 backdrop-blur-lg border-b border-cyan-500/20 dark:border-cyan-500/20 light:border-gray-200" 
-        : "bg-transparent"
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <button 
-            onClick={() => scrollToSection("home")}
-            className="flex items-center space-x-3 group"
-          >
-            <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110">
-              <Image 
-                src="/logo.png" 
-                alt="Receiptia Genius"
-                width={48}
-                height={48}
-                className="object-contain"
-              />
-              <div className="absolute inset-0 bg-cyan-500/20 blur-xl group-hover:bg-cyan-500/30 transition-all duration-300"></div>
+    <nav
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        isScrolled
+          ? "backdrop-blur-xl bg-slate-950/80 border-b border-[#38D594]/10 shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#38D594] to-emerald-600 rounded-xl flex items-center justify-center">
+              <Receipt className="w-6 h-6 text-slate-950" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
-                Receiptia
-              </h1>
-              <p className="text-xs text-cyan-300 dark:text-cyan-300 light:text-cyan-600 font-semibold">GENIUS</p>
+              <div className="text-xl font-bold text-white">Receiptia</div>
+              <div className="text-xs text-[#38D594] font-semibold">GENIUS</div>
             </div>
-          </button>
+          </div>
 
-          {/* Desktop menu */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => scrollToSection("home")} 
-              className="text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-cyan-400 transition-colors relative group"
-            >
-              Home
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
-            </button>
-            <button 
-              onClick={() => scrollToSection("features")} 
-              className="text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-cyan-400 transition-colors relative group"
-            >
+            <a href="#features" className="text-gray-300 hover:text-[#38D594] transition-colors font-medium">
               Funzionalità
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
-            </button>
-            <button 
-              onClick={() => scrollToSection("analysis")} 
-              className="text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-cyan-400 transition-colors relative group"
-            >
-              Analisi
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
-            </button>
-            <button 
-              onClick={() => scrollToSection("pricing")} 
-              className="text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-cyan-400 transition-colors relative group"
-            >
-              Prezzi
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
-            </button>
-            <button 
-              onClick={() => scrollToSection("faq")} 
-              className="text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-cyan-400 transition-colors relative group"
-            >
+            </a>
+            <a href="#how-it-works" className="text-gray-300 hover:text-[#38D594] transition-colors font-medium">
+              Come Funziona
+            </a>
+            <a href="#pricing" className="text-gray-300 hover:text-[#38D594] transition-colors font-medium">
+              Piani
+            </a>
+            <a href="#faq" className="text-gray-300 hover:text-[#38D594] transition-colors font-medium">
               FAQ
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
+            </a>
+          </div>
+
+          {/* CTA */}
+          <div className="hidden md:flex items-center space-x-4">
+            <button className="px-6 py-2.5 text-gray-300 hover:text-white transition-colors font-medium">
+              Accedi
             </button>
-            
-            <ThemeToggle />
-            
-            <button 
-              onClick={() => scrollToSection("download")} 
-              className="bg-gradient-to-r from-cyan-500 via-blue-500 to-emerald-500 px-6 py-2 rounded-full hover:shadow-lg hover:shadow-cyan-500/50 transition-all font-semibold hover:scale-105"
-            >
-              Scarica
+            <button className="px-6 py-2.5 bg-[#38D594] hover:bg-emerald-500 text-slate-950 font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-[#38D594]/20">
+              Inizia Gratis
             </button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-3">
-            <ThemeToggle />
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-300 dark:text-gray-300 light:text-gray-700">
-              {isMenuOpen ? <X /> : <Menu />}
-            </button>
-          </div>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 text-gray-300 hover:text-[#38D594]"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
 
       {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-slate-950/95 dark:bg-slate-950/95 light:bg-white/95 backdrop-blur-lg border-t border-cyan-500/20 dark:border-cyan-500/20 light:border-gray-200 animate-fade-in">
-          <div className="px-4 py-4 space-y-4">
-            <button onClick={() => scrollToSection("home")} className="block w-full text-left text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-cyan-400 transition-colors py-2">
-              Home
+      <div
+        className={`md:hidden transition-all duration-300 overflow-hidden ${
+          isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="px-6 py-4 space-y-3 backdrop-blur-xl bg-slate-950/90 border-t border-[#38D594]/10">
+          <a
+            href="#features"
+            className="block px-4 py-2 text-gray-300 hover:text-[#38D594] transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            Funzionalità
+          </a>
+          <a
+            href="#how-it-works"
+            className="block px-4 py-2 text-gray-300 hover:text-[#38D594] transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            Come Funziona
+          </a>
+          <a
+            href="#pricing"
+            className="block px-4 py-2 text-gray-300 hover:text-[#38D594] transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            Piani
+          </a>
+          <a
+            href="#faq"
+            className="block px-4 py-2 text-gray-300 hover:text-[#38D594] transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            FAQ
+          </a>
+          <div className="pt-4 space-y-2">
+            <button className="w-full px-6 py-2.5 text-gray-300 hover:text-white transition-colors font-medium text-center">
+              Accedi
             </button>
-            <button onClick={() => scrollToSection("features")} className="block w-full text-left text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-cyan-400 transition-colors py-2">
-              Funzionalità
-            </button>
-            <button onClick={() => scrollToSection("analysis")} className="block w-full text-left text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-cyan-400 transition-colors py-2">
-              Analisi
-            </button>
-            <button onClick={() => scrollToSection("pricing")} className="block w-full text-left text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-cyan-400 transition-colors py-2">
-              Prezzi
-            </button>
-            <button onClick={() => scrollToSection("faq")} className="block w-full text-left text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-cyan-400 transition-colors py-2">
-              FAQ
-            </button>
-            <button onClick={() => scrollToSection("download")} className="bg-gradient-to-r from-cyan-500 via-blue-500 to-emerald-500 w-full px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all">
-              Scarica
+            <button className="w-full px-6 py-2.5 bg-[#38D594] hover:bg-emerald-500 text-slate-950 font-semibold rounded-lg transition-all duration-300">
+              Inizia Gratis
             </button>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

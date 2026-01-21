@@ -1,138 +1,84 @@
 "use client";
 
-import { Download, Brain, PiggyBank, Bell, Star } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, Sparkles, TrendingDown } from "lucide-react";
 
 export default function Hero() {
-  const stats = [
-    { value: "€200+", label: "Risparmio medio mensile" },
-    { value: "10K+", label: "Utenti attivi" },
-    { value: "95%", label: "Accuratezza AI" },
-    { value: "4.8★", label: "Rating utenti" }
-  ];
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <section id="home" className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8 animate-fade-in">
-            <div className="inline-block">
-              <span className="bg-cyan-500/20 text-cyan-300 px-4 py-2 rounded-full text-sm font-semibold border border-cyan-500/30">
-                ✨ Lo Spotify Wrapped delle tue spese
-              </span>
-            </div>
-            
-            <h1 className="text-5xl sm:text-7xl font-bold leading-tight">
-              Spendi <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">meglio</span>,<br />
-              vivi meglio
-            </h1>
-            
-            <p className="text-xl text-gray-300 leading-relaxed">
-              L&apos;app che non si limita ad archiviare scontrini, ma analizza le tue abitudini di spesa, 
-              ti dà consigli personalizzati e ti aiuta a raggiungere i tuoi obiettivi finanziari.
-            </p>
+    <section className="relative min-h-screen flex items-center justify-center pt-20 px-6">
+      <div className="relative z-10 max-w-6xl mx-auto">
+        <div className="text-center space-y-8">
+          {/* Badge */}
+          <div className="inline-flex items-center space-x-2 px-5 py-2 bg-[#38D594]/10 backdrop-blur-sm border border-[#38D594]/20 rounded-full">
+            <Sparkles className="w-4 h-4 text-[#38D594]" />
+            <span className="text-[#38D594] font-semibold text-sm">Powered by Artificial Intelligence</span>
+          </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button onClick={() => scrollToSection("download")} className="group bg-gradient-to-r from-cyan-500 via-blue-500 to-emerald-500 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-2xl hover:shadow-cyan-500/50 transition-all flex items-center justify-center gap-2">
-                <Download className="w-5 h-5 group-hover:animate-bounce" />
-                Scarica Gratis
-              </button>
-              <button onClick={() => scrollToSection("features")} className="border border-cyan-500/50 px-8 py-4 rounded-full text-lg font-semibold hover:bg-cyan-500/10 transition-all">
-                Scopri di più
-              </button>
-            </div>
+          {/* Main Headline */}
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+            Non spendi tanto.
+            <br />
+            <span className="text-[#38D594]">Sprechi senza saperlo.</span>
+          </h1>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8">
-              {stats.map((stat, idx) => (
-                <div key={idx} className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
-                </div>
-              ))}
+          {/* Subtitle */}
+          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Receiptia Genius analizza le tue abitudini di spesa e ti aiuta a risparmiare con consigli intelligenti e personalizzati.
+          </p>
+
+          {/* Secondary tagline */}
+          <div className="flex items-center justify-center space-x-2 text-gray-500">
+            <TrendingDown className="w-5 h-5 text-[#38D594]" />
+            <p className="text-lg">Il Wrapped delle tue spese, tutto l'anno</p>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+            <button className="group px-8 py-4 bg-[#38D594] hover:bg-emerald-500 text-slate-950 font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-[#38D594]/25 flex items-center space-x-2">
+              <span>Inizia Gratis per 14 Giorni</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button className="px-8 py-4 bg-slate-800/80 hover:bg-slate-800 border border-[#38D594]/20 hover:border-[#38D594]/40 text-white font-semibold rounded-lg transition-all duration-300">
+              Guarda la Demo
+            </button>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="pt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-gray-500">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-[#38D594] rounded-full"></div>
+              <span>Crittografia end-to-end</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-[#38D594] rounded-full"></div>
+              <span>Dati privati e sicuri</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-[#38D594] rounded-full"></div>
+              <span>Nessuna carta richiesta</span>
             </div>
           </div>
 
-          {/* Hero Image/Mockup */}
-          <div className="relative animate-fade-in-up">
-            <div className="relative z-10">
-              <div className="bg-gradient-to-br from-cyan-900/50 via-blue-900/50 to-emerald-900/50 backdrop-blur-xl rounded-3xl p-8 border border-cyan-500/30 shadow-2xl">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3 pb-4 border-b border-cyan-500/30">
-                    <div className="w-10 h-10 relative">
-                      <Image 
-                        src="/logo.png" 
-                        alt="Genius"
-                        width={40}
-                        height={40}
-                        className="object-contain"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-xl">Genius Dashboard</h3>
-                      <p className="text-sm text-gray-400">Analisi gennaio 2026</p>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-emerald-500/20 border border-emerald-500/30 rounded-2xl p-6">
-                    <div className="flex items-center gap-3 mb-2">
-                      <PiggyBank className="w-6 h-6 text-emerald-400" />
-                      <span className="text-sm text-emerald-300 font-semibold">RISPARMIO DEL MESE</span>
-                    </div>
-                    <div className="text-4xl font-bold text-emerald-400">€243.50</div>
-                    <p className="text-sm text-gray-300 mt-2">+18% rispetto al mese scorso! 🎉</p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="bg-slate-800/50 rounded-xl p-4 border border-cyan-500/20">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm font-semibold">Spese Impulsive Evitate</span>
-                        <span className="text-cyan-400 font-bold">4</span>
-                      </div>
-                      <div className="w-full bg-slate-700 rounded-full h-2">
-                        <div className="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style={{width: "80%"}}></div>
-                      </div>
-                    </div>
-
-                    <div className="bg-slate-800/50 rounded-xl p-4 border border-blue-500/20">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm font-semibold">Abbonamenti Ottimizzati</span>
-                        <span className="text-blue-400 font-bold">2</span>
-                      </div>
-                      <div className="w-full bg-slate-700 rounded-full h-2">
-                        <div className="bg-gradient-to-r from-blue-500 to-emerald-500 h-2 rounded-full" style={{width: "60%"}}></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <div className="flex-1 bg-cyan-500/20 border border-cyan-500/30 rounded-xl p-4 text-center">
-                      <Bell className="w-5 h-5 text-cyan-400 mx-auto mb-1" />
-                      <div className="text-2xl font-bold text-cyan-400">8</div>
-                      <div className="text-xs text-gray-400">Alert ricevuti</div>
-                    </div>
-                    <div className="flex-1 bg-emerald-500/20 border border-emerald-500/30 rounded-xl p-4 text-center">
-                      <Star className="w-5 h-5 text-emerald-400 mx-auto mb-1" />
-                      <div className="text-2xl font-bold text-emerald-400">12</div>
-                      <div className="text-xs text-gray-400">Achievement</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          {/* Stats */}
+          <div className="pt-16 grid grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-[#38D594] mb-2">200€</div>
+              <div className="text-sm text-gray-400">Risparmio medio mensile</div>
             </div>
-            <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-emerald-500/20 blur-3xl -z-10"></div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-[#38D594] mb-2">95%</div>
+              <div className="text-sm text-gray-400">Accuratezza AI</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-[#38D594] mb-2">10K+</div>
+              <div className="text-sm text-gray-400">Utenti attivi</div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Decorative gradient orbs */}
+      <div className="absolute top-1/4 left-10 w-72 h-72 bg-[#38D594]/20 rounded-full blur-3xl opacity-50"></div>
+      <div className="absolute bottom-1/4 right-10 w-72 h-72 bg-emerald-500/20 rounded-full blur-3xl opacity-50"></div>
     </section>
   );
 }
