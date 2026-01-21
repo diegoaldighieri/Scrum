@@ -94,7 +94,7 @@ export default function Trust() {
         </div>
 
         {/* Privacy Statement */}
-        <div className="bg-gradient-to-br from-slate-900/80 to-slate-900/50 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 md:p-12 hover:border-primary/30 transition-all">
+        <div className="bg-linear-to-br from-slate-900/80 to-slate-900/50 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 md:p-12 hover:border-primary/30 transition-all">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-2xl font-bold text-white mb-6">
@@ -102,25 +102,25 @@ export default function Trust() {
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
                   <p className="text-gray-300">
                     <span className="font-semibold text-white">Esporta i tuoi dati</span> in qualsiasi momento in formato CSV o PDF
                   </p>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
                   <p className="text-gray-300">
                     <span className="font-semibold text-white">Modifica o elimina</span> qualsiasi transazione o categoria assegnata
                   </p>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
                   <p className="text-gray-300">
                     <span className="font-semibold text-white">Cancellazione account</span> immediata con rimozione completa dei dati
                   </p>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
                   <p className="text-gray-300">
                     <span className="font-semibold text-white">Zero vendita dati</span> a terze parti, garantito per contratto
                   </p>

@@ -79,7 +79,7 @@ export default function FAQ() {
                   {faq.question}
                 </span>
                 <ChevronDown
-                  className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${
+                  className={`w-6 h-6 text-primary shrink-0 transition-transform duration-300 ${
                     openIndex === i ? "rotate-180" : ""
                   }`}
                 />
@@ -99,7 +99,7 @@ export default function FAQ() {
         </div>
 
         {/* Additional Help */}
-        <div className="mt-12 text-center p-8 bg-gradient-to-br from-slate-900/80 to-slate-900/50 backdrop-blur-sm border border-primary/10 rounded-xl hover:border-primary/20 transition-all">
+        <div className="mt-12 text-center p-8 bg-linear-to-br from-slate-900/80 to-slate-900/50 backdrop-blur-sm border border-primary/10 rounded-xl hover:border-primary/20 transition-all">
           <h3 className="text-xl font-bold text-white mb-3">
             Non hai trovato la risposta che cercavi?
           </h3>
