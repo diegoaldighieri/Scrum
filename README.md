@@ -24,6 +24,7 @@ Sito web moderno e responsive per Receiptia Genius, un'app di gestione finanziar
 - Shadow effects dinamici
 - Transizioni fluide su tutti i componenti
 
+
 ### 📱 Responsive Design
 - Mobile-first approach
 - Breakpoints ottimizzati per tablet e desktop
