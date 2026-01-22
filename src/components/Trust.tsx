@@ -1,159 +1,232 @@
 "use client";
 
-import { Shield, Lock, UserCheck, Award, ThumbsUp, Clock } from "lucide-react";
+import { Shield, Users, Award, Lock } from "lucide-react";
+import Image from "next/image";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Trust() {
-  const badges = [
+  const { theme } = useTheme();
+
+  const trustBadges = [
     {
-      icon: <Shield className="w-6 h-6" />,
-      label: "Crittografia End-to-End",
-      color: "text-primary",
+      icon: <Shield className="w-8 h-8" />,
+      title: "Sicurezza Garantita",
+      description: "Crittografia end-to-end e conformità GDPR per proteggere i tuoi dati finanziari.",
     },
     {
-      icon: <Lock className="w-6 h-6" />,
-      label: "GDPR Compliant",
-      color: "text-blue-400",
+      icon: <Users className="w-8 h-8" />,
+      title: "50.000+ Utenti Attivi",
+      description: "Migliaia di persone già risparmiano con Receiptia Genius ogni giorno.",
     },
     {
-      icon: <UserCheck className="w-6 h-6" />,
-      label: "Dati Mai Venduti",
-      color: "text-emerald-400",
+      icon: <Award className="w-8 h-8" />,
+      title: "Rating 4.8/5",
+      description: "Valutato come Best App for Personal Finance 2024 su App Store e Google Play.",
     },
     {
-      icon: <Award className="w-6 h-6" />,
-      label: "Certificato ISO 27001",
-      color: "text-amber-400",
+      icon: <Lock className="w-8 h-8" />,
+      title: "Privacy First",
+      description: "I tuoi dati non vengono mai venduti a terze parti. Mai.",
     },
   ];
 
-  const trustFeatures = [
+  const testimonials = [
     {
-      icon: <ThumbsUp className="w-8 h-8" />,
-      title: "Sistema di Feedback Integrato",
-      description: "Ogni insight generato dall'AI può essere valutato. Il tuo feedback migliora costantemente l'accuratezza dei consigli.",
+      name: "Marco R.",
+      role: "Freelance Designer",
+      image: "/avatar1.jpg",
+      text: "Ho scoperto che spendevo €180 al mese in abbonamenti che non usavo più. Receiptia me li ha evidenziati tutti in una settimana!",
+      rating: 5,
     },
     {
-      icon: <Clock className="w-8 h-8" />,
-      title: "Badge di Affidabilità",
-      description: "Ogni consiglio mostra un indicatore di confidenza: 🟢 Verde (alta affidabilità), 🟡 Giallo (verifica consigliata), 🔴 Rosso (pochi dati).",
+      name: "Sofia M.",
+      role: "Madre di 2 figli",
+      image: "/avatar2.jpg",
+      text: "Gestire il budget familiare era un incubo. Ora so esattamente dove vanno i nostri soldi e abbiamo già risparmiato €500 in 3 mesi!",
+      rating: 5,
     },
     {
-      icon: <UserCheck className="w-8 h-8" />,
-      title: "Supporto Umano Sempre Disponibile",
-      description: "L'AI può sbagliare. Per questo ogni segnalazione viene verificata da un operatore entro 24 ore. Chat con operatore disponibile 9:00-20:00.",
+      name: "Luca T.",
+      role: "Studente Universitario",
+      image: "/avatar3.jpg",
+      text: "Perfetto per chi ha budget limitati. Le notifiche mi avvisano quando sto per sforare e mi suggeriscono alternative più economiche.",
+      rating: 5,
     },
+  ];
+
+  const logos = [
+    { name: "TechCrunch", src: "/logo-techcrunch.png" },
+    { name: "Forbes", src: "/logo-forbes.png" },
+    { name: "Wired", src: "/logo-wired.png" },
+    { name: "The Next Web", src: "/logo-tnw.png" },
   ];
 
   return (
-    <section className="relative py-24 px-6 bg-slate-900/30">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            La tua fiducia è
-            <span className="text-primary"> la nostra priorità</span>
-          </h2>
-          <p className="text-xl text-gray-400">
-            Sicurezza dei dati, trasparenza e controllo totale sui tuoi insight finanziari.
-          </p>
-        </div>
+      <section className={`relative py-24 px-6 ${
+          theme === 'dark' ? 'bg-slate-900/30' : 'bg-white'
+      }`}>
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
+                theme === 'dark' ? 'text-white' : 'text-slate-900'
+            }`}>
+              Fidato da migliaia di utenti
+            </h2>
+            <p className={`text-xl max-w-2xl mx-auto ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+            }`}>
+              La sicurezza e la privacy dei tuoi dati sono la nostra priorità assoluta.
+            </p>
+          </div>
 
-        {/* Security Badges */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-          {badges.map((badge, i) => (
-            <div
-              key={i}
-              className="p-6 bg-slate-900/50 backdrop-blur-sm border border-primary/10 rounded-xl text-center hover:border-primary/30 transition-all duration-300 hover:scale-105"
-            >
-              <div className={`flex justify-center mb-3 ${badge.color}`}>
-                {badge.icon}
-              </div>
-              <p className="text-gray-300 text-sm font-medium">{badge.label}</p>
-            </div>
-          ))}
-        </div>
+          {/* Trust Badges */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+            {trustBadges.map((badge, i) => (
+                <div
+                    key={i}
+                    className={`p-6 rounded-xl border transition-all duration-300 hover:scale-105 ${
+                        theme === 'dark'
+                            ? 'bg-slate-900/50 border-primary/10 hover:border-primary/30'
+                            : 'bg-gray-50 border-gray-200 hover:border-primary/30 shadow-md'
+                    }`}
+                >
+                  <div className="text-primary mb-4">{badge.icon}</div>
+                  <h3 className={`text-lg font-bold mb-2 ${
+                      theme === 'dark' ? 'text-white' : 'text-slate-900'
+                  }`}>
+                    {badge.title}
+                  </h3>
+                  <p className={`text-sm ${
+                      theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                  }`}>
+                    {badge.description}
+                  </p>
+                </div>
+            ))}
+          </div>
 
-        {/* Trust Features */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {trustFeatures.map((feature, i) => (
-            <div
-              key={i}
-              className="p-8 bg-slate-900/50 backdrop-blur-sm border border-primary/10 rounded-xl hover:border-primary/30 transition-all duration-300 hover:scale-105"
-            >
-              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 hover:scale-110 transition-transform">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
+          {/* Testimonials */}
+          <div className="mb-20">
+            <h3 className={`text-3xl font-bold text-center mb-12 ${
+                theme === 'dark' ? 'text-white' : 'text-slate-900'
+            }`}>
+              Cosa dicono i nostri utenti
+            </h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, i) => (
+                  <div
+                      key={i}
+                      className={`p-6 rounded-xl border transition-all duration-300 hover:scale-105 ${
+                          theme === 'dark'
+                              ? 'bg-slate-900/50 border-primary/10 hover:border-primary/30'
+                              : 'bg-white border-gray-200 hover:border-primary/30 shadow-lg'
+                      }`}
+                  >
+                    {/* Rating Stars */}
+                    <div className="flex mb-4">
+                      {[...Array(testimonial.rating)].map((_, j) => (
+                          <svg
+                              key={j}
+                              className="w-5 h-5 text-amber-400 fill-current"
+                              viewBox="0 0 20 20"
+                          >
+                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                          </svg>
+                      ))}
+                    </div>
 
-        {/* Privacy Statement */}
-        <div className="bg-linear-to-br from-slate-900/80 to-slate-900/50 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 md:p-12 hover:border-primary/30 transition-all">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-6">
-                Il tuo controllo, sempre
-              </h3>
-              <ul className="space-y-4">
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                  <p className="text-gray-300">
-                    <span className="font-semibold text-white">Esporta i tuoi dati</span> in qualsiasi momento in formato CSV o PDF
-                  </p>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                  <p className="text-gray-300">
-                    <span className="font-semibold text-white">Modifica o elimina</span> qualsiasi transazione o categoria assegnata
-                  </p>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                  <p className="text-gray-300">
-                    <span className="font-semibold text-white">Cancellazione account</span> immediata con rimozione completa dei dati
-                  </p>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
-                  <p className="text-gray-300">
-                    <span className="font-semibold text-white">Zero vendita dati</span> a terze parti, garantito per contratto
-                  </p>
-                </li>
-              </ul>
+                    {/* Testimonial Text */}
+                    <p className={`mb-6 italic ${
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      "{testimonial.text}"
+                    </p>
+
+                    {/* Author */}
+                    <div className="flex items-center space-x-3">
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${
+                          theme === 'dark' ? 'bg-primary/20 text-primary' : 'bg-primary/10 text-primary'
+                      }`}>
+                        {testimonial.name.charAt(0)}
+                      </div>
+                      <div>
+                        <div className={`font-semibold ${
+                            theme === 'dark' ? 'text-white' : 'text-slate-900'
+                        }`}>
+                          {testimonial.name}
+                        </div>
+                        <div className={`text-sm ${
+                            theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                        }`}>
+                          {testimonial.role}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              ))}
             </div>
-            <div className="p-8 bg-slate-950/50 rounded-xl border border-primary/10 hover:border-primary/30 transition-all">
-              <div className="text-center mb-6">
-                <Shield className="w-16 h-16 text-primary mx-auto mb-4 animate-pulse" />
-                <h4 className="text-xl font-bold text-white mb-2">Privacy by Design</h4>
-                <p className="text-gray-400 text-sm">
-                  I tuoi dati finanziari restano sul tuo dispositivo. L'elaborazione AI avviene in modo sicuro e crittografato.
-                </p>
+          </div>
+
+          {/* Press Coverage */}
+          <div className={`text-center p-12 rounded-xl border ${
+              theme === 'dark'
+                  ? 'bg-slate-900/30 border-primary/10'
+                  : 'bg-gray-50 border-gray-200'
+          }`}>
+            <h3 className={`text-2xl font-bold mb-8 ${
+                theme === 'dark' ? 'text-white' : 'text-slate-900'
+            }`}>
+              Visto su
+            </h3>
+            <div className="flex flex-wrap justify-center items-center gap-12">
+              {logos.map((logo, i) => (
+                  <div
+                      key={i}
+                      className={`text-2xl font-bold ${
+                          theme === 'dark' ? 'text-gray-500' : 'text-gray-400'
+                      } hover:text-primary transition-colors`}
+                  >
+                    {logo.name}
+                  </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Security Certification */}
+          <div className={`mt-12 p-8 rounded-xl border text-center ${
+              theme === 'dark'
+                  ? 'bg-slate-900/50 border-primary/10'
+                  : 'bg-white border-gray-200 shadow-md'
+          }`}>
+            <div className="flex justify-center space-x-8 items-center">
+              <div className="flex items-center space-x-2">
+                <Shield className="w-6 h-6 text-primary" />
+                <span className={`font-semibold ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                GDPR Compliant
+              </span>
               </div>
-              <div className="pt-6 border-t border-primary/10">
-                <p className="text-gray-500 text-xs text-center">
-                  Certificazioni: GDPR, ISO 27001, SOC 2 Type II
-                </p>
+              <div className="flex items-center space-x-2">
+                <Lock className="w-6 h-6 text-primary" />
+                <span className={`font-semibold ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                SSL Encrypted
+              </span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Award className="w-6 h-6 text-primary" />
+                <span className={`font-semibold ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                ISO 27001
+              </span>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Support Promise */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center space-x-2 px-6 py-3 bg-primary/10 border border-primary/20 rounded-full hover:bg-primary/20 transition-all">
-            <UserCheck className="w-5 h-5 text-primary" />
-            <span className="text-gray-300 font-medium">
-              <span className="text-primary font-semibold">Tempi di risposta garantiti:</span> Chat AI &lt;2 min • Operatore &lt;10 min • Email &lt;24h
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
   );
 }

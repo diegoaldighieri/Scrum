@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import Image from "next/image";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,7 +49,11 @@ export default function Navigation() {
   };
 
   return (
-      <nav className="fixed w-full z-50 backdrop-blur-xl bg-slate-900/30 border-b border-primary/20 shadow-lg transition-all duration-300">
+      <nav className={`fixed w-full z-50 backdrop-blur-xl ${
+          theme === 'dark'
+              ? 'bg-slate-900/30 border-b border-primary/20'
+              : 'bg-white/80 border-b border-primary/20'
+      } shadow-lg transition-all duration-300`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
@@ -69,7 +75,9 @@ export default function Navigation() {
                 />
               </div>
               <div>
-                <div className="text-xl font-bold text-white">Receiptia</div>
+                <div className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
+                  Receiptia
+                </div>
                 <div className="text-xs text-primary font-semibold">GENIUS</div>
               </div>
             </a>
@@ -79,38 +87,61 @@ export default function Navigation() {
               <a
                   href="#features"
                   onClick={(e) => handleLinkClick(e, "#features")}
-                  className="text-gray-300 hover:text-primary transition-colors font-medium"
+                  className={`${
+                      theme === 'dark' ? 'text-gray-300 hover:text-primary' : 'text-gray-600 hover:text-primary'
+                  } transition-colors font-medium`}
               >
                 Funzionalità
               </a>
               <a
                   href="#how-it-works"
                   onClick={(e) => handleLinkClick(e, "#how-it-works")}
-                  className="text-gray-300 hover:text-primary transition-colors font-medium"
+                  className={`${
+                      theme === 'dark' ? 'text-gray-300 hover:text-primary' : 'text-gray-600 hover:text-primary'
+                  } transition-colors font-medium`}
               >
                 Come funziona
               </a>
               <a
                   href="#pricing"
                   onClick={(e) => handleLinkClick(e, "#pricing")}
-                  className="text-gray-300 hover:text-primary transition-colors font-medium"
+                  className={`${
+                      theme === 'dark' ? 'text-gray-300 hover:text-primary' : 'text-gray-600 hover:text-primary'
+                  } transition-colors font-medium`}
               >
                 Piani
               </a>
               <a
                   href="#faq"
                   onClick={(e) => handleLinkClick(e, "#faq")}
-                  className="text-gray-300 hover:text-primary transition-colors font-medium"
+                  className={`${
+                      theme === 'dark' ? 'text-gray-300 hover:text-primary' : 'text-gray-600 hover:text-primary'
+                  } transition-colors font-medium`}
               >
                 FAQ
               </a>
             </div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons + Theme Toggle */}
             <div className="hidden md:flex items-center space-x-4">
+              {/* Theme Toggle Button */}
+              <button
+                  onClick={toggleTheme}
+                  className={`p-2.5 rounded-lg transition-all duration-300 hover:scale-110 ${
+                      theme === 'dark'
+                          ? 'bg-slate-800 hover:bg-slate-700 text-yellow-400'
+                          : 'bg-gray-100 hover:bg-gray-200 text-slate-700'
+                  }`}
+                  aria-label={theme === 'dark' ? 'Attiva modalità chiara' : 'Attiva modalità scura'}
+              >
+                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+
               <button
                   onClick={() => alert("Funzionalità di login in arrivo!")}
-                  className="px-6 py-2.5 text-gray-300 hover:text-white transition-colors font-medium"
+                  className={`px-6 py-2.5 ${
+                      theme === 'dark' ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-slate-900'
+                  } transition-colors font-medium`}
               >
                 Accedi
               </button>
@@ -122,14 +153,31 @@ export default function Navigation() {
               </button>
             </div>
 
-            {/* Mobile menu button */}
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 text-gray-300 hover:text-primary transition-colors"
-                aria-label={isOpen ? "Chiudi menu" : "Apri menu"}
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            {/* Mobile menu button + Theme Toggle */}
+            <div className="md:hidden flex items-center space-x-2">
+              {/* Mobile Theme Toggle */}
+              <button
+                  onClick={toggleTheme}
+                  className={`p-2 rounded-lg transition-all ${
+                      theme === 'dark'
+                          ? 'bg-slate-800 text-yellow-400'
+                          : 'bg-gray-100 text-slate-700'
+                  }`}
+                  aria-label={theme === 'dark' ? 'Attiva modalità chiara' : 'Attiva modalità scura'}
+              >
+                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+
+              <button
+                  onClick={() => setIsOpen(!isOpen)}
+                  className={`p-2 ${
+                      theme === 'dark' ? 'text-gray-300 hover:text-primary' : 'text-gray-600 hover:text-primary'
+                  } transition-colors`}
+                  aria-label={isOpen ? "Chiudi menu" : "Apri menu"}
+              >
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -139,32 +187,52 @@ export default function Navigation() {
                 isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
             }`}
         >
-          <div className="px-6 py-4 space-y-3 backdrop-blur-xl bg-slate-900/30 border-t border-primary/10">
+          <div className={`px-6 py-4 space-y-3 backdrop-blur-xl ${
+              theme === 'dark'
+                  ? 'bg-slate-900/30 border-t border-primary/10'
+                  : 'bg-white/90 border-t border-primary/10'
+          }`}>
             <a
                 href="#features"
                 onClick={(e) => handleLinkClick(e, "#features")}
-                className="block px-4 py-2 text-gray-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+                className={`block px-4 py-2 ${
+                    theme === 'dark'
+                        ? 'text-gray-300 hover:text-primary hover:bg-primary/5'
+                        : 'text-gray-600 hover:text-primary hover:bg-primary/5'
+                } rounded-lg transition-colors`}
             >
               Funzionalità
             </a>
             <a
                 href="#how-it-works"
                 onClick={(e) => handleLinkClick(e, "#how-it-works")}
-                className="block px-4 py-2 text-gray-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+                className={`block px-4 py-2 ${
+                    theme === 'dark'
+                        ? 'text-gray-300 hover:text-primary hover:bg-primary/5'
+                        : 'text-gray-600 hover:text-primary hover:bg-primary/5'
+                } rounded-lg transition-colors`}
             >
               Come funziona
             </a>
             <a
                 href="#pricing"
                 onClick={(e) => handleLinkClick(e, "#pricing")}
-                className="block px-4 py-2 text-gray-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+                className={`block px-4 py-2 ${
+                    theme === 'dark'
+                        ? 'text-gray-300 hover:text-primary hover:bg-primary/5'
+                        : 'text-gray-600 hover:text-primary hover:bg-primary/5'
+                } rounded-lg transition-colors`}
             >
               Piani
             </a>
             <a
                 href="#faq"
                 onClick={(e) => handleLinkClick(e, "#faq")}
-                className="block px-4 py-2 text-gray-300 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+                className={`block px-4 py-2 ${
+                    theme === 'dark'
+                        ? 'text-gray-300 hover:text-primary hover:bg-primary/5'
+                        : 'text-gray-600 hover:text-primary hover:bg-primary/5'
+                } rounded-lg transition-colors`}
             >
               FAQ
             </a>
@@ -174,7 +242,11 @@ export default function Navigation() {
                     setIsOpen(false);
                     alert("Funzionalità di login in arrivo!");
                   }}
-                  className="w-full px-6 py-2.5 text-gray-300 hover:text-white hover:bg-slate-800 rounded-lg transition-colors font-medium text-center"
+                  className={`w-full px-6 py-2.5 ${
+                      theme === 'dark'
+                          ? 'text-gray-300 hover:text-white hover:bg-slate-800'
+                          : 'text-gray-600 hover:text-slate-900 hover:bg-gray-100'
+                  } rounded-lg transition-colors font-medium text-center`}
               >
                 Accedi
               </button>
