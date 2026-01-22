@@ -1,7 +1,6 @@
 "use client";
 
 import { Shield, Users, Award, Lock } from "lucide-react";
-import Image from "next/image";
 import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Trust() {
@@ -167,66 +166,7 @@ export default function Trust() {
               ))}
             </div>
           </div>
-
-          {/* Press Coverage */}
-          <div className={`text-center p-12 rounded-xl border ${
-              theme === 'dark'
-                  ? 'bg-slate-900/30 border-primary/10'
-                  : 'bg-gray-50 border-gray-200'
-          }`}>
-            <h3 className={`text-2xl font-bold mb-8 ${
-                theme === 'dark' ? 'text-white' : 'text-slate-900'
-            }`}>
-              Visto su
-            </h3>
-            <div className="flex flex-wrap justify-center items-center gap-12">
-              {logos.map((logo, i) => (
-                  <div
-                      key={i}
-                      className={`text-2xl font-bold ${
-                          theme === 'dark' ? 'text-gray-500' : 'text-gray-400'
-                      } hover:text-primary transition-colors`}
-                  >
-                    {logo.name}
-                  </div>
-              ))}
-            </div>
           </div>
-
-          {/* Security Certification */}
-          <div className={`mt-12 p-8 rounded-xl border text-center ${
-              theme === 'dark'
-                  ? 'bg-slate-900/50 border-primary/10'
-                  : 'bg-white border-gray-200 shadow-md'
-          }`}>
-            <div className="flex justify-center space-x-8 items-center">
-              <div className="flex items-center space-x-2">
-                <Shield className="w-6 h-6 text-primary" />
-                <span className={`font-semibold ${
-                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                GDPR Compliant
-              </span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Lock className="w-6 h-6 text-primary" />
-                <span className={`font-semibold ${
-                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                SSL Encrypted
-              </span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Award className="w-6 h-6 text-primary" />
-                <span className={`font-semibold ${
-                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                }`}>
-                ISO 27001
-              </span>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
   );
 }
