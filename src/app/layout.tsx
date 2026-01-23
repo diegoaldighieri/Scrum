@@ -18,6 +18,7 @@ export default function RootLayout({
             <meta property="og:title" content="Receiptia Genius - Spendi meglio, vivi meglio" />
             <meta property="og:description" content="Analizza le tue abitudini di spesa con AI e risparmia fino a €200 al mese." />
             <meta property="og:type" content="website" />
+            <link rel="icon" href="/logo.png" sizes="any" />
         </head>
         <body className="antialiased">
         <ThemeProvider>
