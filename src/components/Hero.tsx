@@ -83,40 +83,6 @@ export default function Hero() {
                 <span>Nessuna carta richiesta</span>
               </div>
             </div>
-
-            {/* Stats */}
-            <div className="pt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className={`text-center p-6 ${
-                  theme === 'dark'
-                      ? 'bg-slate-900/30 border-primary/10 hover:border-primary/30'
-                      : 'bg-white border-primary/20 hover:border-primary/40 shadow-lg'
-              } backdrop-blur-sm border rounded-xl transition-all hover:scale-105`}>
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">200€</div>
-                <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Risparmio medio mensile
-                </div>
-              </div>
-              <div className={`text-center p-6 ${
-                  theme === 'dark'
-                      ? 'bg-slate-900/30 border-primary/10 hover:border-primary/30'
-                      : 'bg-white border-primary/20 hover:border-primary/40 shadow-lg'
-              } backdrop-blur-sm border rounded-xl transition-all hover:scale-105`}>
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">95%</div>
-                <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Accuratezza AI
-                </div>
-              </div>
-              <div className={`text-center p-6 ${
-                  theme === 'dark'
-                      ? 'bg-slate-900/30 border-primary/10 hover:border-primary/30'
-                      : 'bg-white border-primary/20 hover:border-primary/40 shadow-lg'
-              } backdrop-blur-sm border rounded-xl transition-all hover:scale-105`}>
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">10K+</div>
-                <div className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Utenti attivi
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
