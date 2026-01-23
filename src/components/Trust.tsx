@@ -1,3 +1,4 @@
+{}/*
 "use client";
 
 import { Shield, Users, Award, Lock } from "lucide-react";
@@ -65,7 +66,7 @@ export default function Trust() {
           theme === 'dark' ? 'bg-slate-900/30' : 'bg-white'
       }`}>
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
+
           <div className="text-center mb-16">
             <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
                 theme === 'dark' ? 'text-white' : 'text-slate-900'
@@ -79,7 +80,7 @@ export default function Trust() {
             </p>
           </div>
 
-          {/* Trust Badges */}
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {trustBadges.map((badge, i) => (
                 <div
@@ -105,7 +106,7 @@ export default function Trust() {
             ))}
           </div>
 
-          {/* Testimonials */}
+
           <div className="mb-20">
             <h3 className={`text-3xl font-bold text-center mb-12 ${
                 theme === 'dark' ? 'text-white' : 'text-slate-900'
@@ -122,7 +123,7 @@ export default function Trust() {
                               : 'bg-white border-gray-200 hover:border-primary/30 shadow-lg'
                       }`}
                   >
-                    {/* Rating Stars */}
+
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, j) => (
                           <svg
@@ -135,14 +136,14 @@ export default function Trust() {
                       ))}
                     </div>
 
-                    {/* Testimonial Text */}
+
                     <p className={`mb-6 italic ${
                         theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                     }`}>
                       "{testimonial.text}"
                     </p>
 
-                    {/* Author */}
+
                     <div className="flex items-center space-x-3">
                       <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${
                           theme === 'dark' ? 'bg-primary/20 text-primary' : 'bg-primary/10 text-primary'
@@ -169,4 +170,4 @@ export default function Trust() {
           </div>
       </section>
   );
-}
+}*/
