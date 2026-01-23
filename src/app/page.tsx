@@ -28,7 +28,6 @@ export default function Home() {
                     theme === 'dark' ? 'bg-emerald-500/10' : 'bg-emerald-500/5'
                 } rounded-full blur-3xl animate-pulse-slow`} style={{ animationDelay: '1s' }}></div>
             </div>
-
             <Navigation />
             <Hero />
             <Features />
